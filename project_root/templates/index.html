@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Storage</title>
+</head>
+<body>
+    <h1>Upload File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file"><br>
+        <input type="submit" value="Upload">
+    </form>
+    <h2>Download File</h2>
+    <form action="/download" method="get">
+        <input type="text" name="filename" placeholder="Filename"><br>
+        <input type="submit" value="Download">
+    </form>
+    <h2>Blockchain</h2>
+    <button onclick="fetchChain()">View Chain</button>
+    <pre id="chain"></pre>
+
+    <script>
+        async function fetchChain() {
+            const response = await fetch('/chain');
+            const chain = await response.json();
+            document.getElementById('chain').textContent = JSON.stringify(chain, null, 2);
+        }
+    </script>
+</body>
+</html>
