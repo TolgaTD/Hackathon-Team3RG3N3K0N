@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Data Storage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure File Storage</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-    <h1>Upload File</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file"><br>
-        <input type="submit" value="Upload">
-    </form>
-    <h2>Download File</h2>
-    <form action="/download" method="get">
-        <input type="text" name="filename" placeholder="Filename"><br>
-        <input type="submit" value="Download">
-    </form>
-    <h2>Blockchain</h2>
-    <button onclick="fetchChain()">View Chain</button>
-    <pre id="chain"></pre>
-
-    <script>
-        async function fetchChain() {
-            const response = await fetch('/chain');
-            const chain = await response.json();
-            document.getElementById('chain').textContent = JSON.stringify(chain, null, 2);
-        }
-    </script>
+    <header>
+        <h1>Secure File Storage System</h1>
+    </header>
+    <main>
+        <section id="file-upload">
+            <h2>Upload Files</h2>
+            <input type="file" id="fileInput" multiple>
+            <button onclick="uploadFiles()">Upload</button>
+        </section>
+        <section id="file-list">
+            <h2>Uploaded Files</h2>
+            <ul id="files">
+                <!-- Uploaded files will be listed here -->
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Company, Inc. All rights reserved.</p>
+    </footer>
+    <script src="../static/js/script.js"></script>
 </body>
 </html>
