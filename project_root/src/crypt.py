@@ -40,6 +40,17 @@ def encrypt_data(data, public_key):
     )
     return encrypted
 
+def decrypt_data(encrypted_data, private_key):
+    decrypted = private_key.decrypt(
+        encrypted_data,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    return decrypted
+
 def split_file(file_path, num_chunks, public_key):
     file_size = os.path.getsize(file_path)
     chunk_size = file_size // num_chunks
@@ -55,7 +66,6 @@ def split_file(file_path, num_chunks, public_key):
         chunks.append(encrypted_last_chunk)
     return chunks
 
-# Example usage:
 if __name__ == "__main__":
     private_key, public_key = generate_keys()
     file_path = "path_to_your_large_file.ext"  # Replace this with the path to your file

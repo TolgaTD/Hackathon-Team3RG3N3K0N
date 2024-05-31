@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 Flask-RESTful
 requests
 werkzeug
+cryptography
