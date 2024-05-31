@@ -1,15 +1,21 @@
-function uploadFiles() {
-    const files = document.getElementById('fileInput').files;
-    const fileArea = document.getElementById('files');
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var formData = new FormData(this);
 
-    for (let i = 0; i < files.length; i++) {
-        const li = document.createElement('li');
-        li.textContent = `Uploading ${files[i].name}...`;
-        fileArea.appendChild(li);
-
-        // Implement the file upload logic here
-        setTimeout(() => { // Dummy timeout to simulate upload
-            li.textContent = `${files[i].name} - Uploaded successfully.`;
-        }, 1000 * (i+1));
-    }
-}
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        var resultDiv = document.getElementById('uploadResult');
+        if (data.error) {
+            resultDiv.innerHTML = '<p style="color: red;">' + data.error + '</p>';
+        } else {
+            resultDiv.innerHTML = '<p style="color: green;">' + data.message + '</p>';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});

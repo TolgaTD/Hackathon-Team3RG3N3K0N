@@ -1,4 +1,7 @@
-# blockchain.py
+import hashlib
+import json
+
+
 class Blockchain:
     def __init__(self):
         self.chain = []

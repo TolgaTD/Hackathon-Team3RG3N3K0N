@@ -4,3 +4,4 @@ Flask-RESTful
 requests
 werkzeug
 cryptography
+json

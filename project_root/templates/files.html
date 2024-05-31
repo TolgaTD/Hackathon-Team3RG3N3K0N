@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Files</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-3">
+    <h1>Available Files</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Node</th>
+                <th>Filename</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr>
+                <td>{{ file.node }}</td>
+                <td>{{ file.filename }}</td>
+                <td><a href="{{ url_for('download_file', node=file.node, filename=file.filename) }}" class="btn btn-primary">Download</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
